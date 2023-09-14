@@ -1,3 +1,9 @@
+// Prints a simple calendar to the console. Can be run by copying and pasting code into browser console. Can also be run using nodejs. 
+
+// Usage:  showCal(year, month)
+
+//Decription: Prints a calendar to the console showing the single specified month from the specidied year. If no arguments are given, prints the current month of the current year.
+
 class Calendar {
   constructor(yearX, monthY) {
     this.year = yearX || new Date().getFullYear();
