@@ -54,14 +54,18 @@ class Calendar {
   }
 
   // Grabs the amount of days in the spicified month, and the day of the week that the month starts.
-  generateCal() {
+  static generateCal() {
     this._daysInMonth = new Date(this._year, this._month + 1, 0).getDate();
     this._weekStartDay = new Date(this._year, this._month).getDay();
   }
 
-  printCal() {
+  printCal(...args) {
+    if (args.length == 2 && !args.includes(undefined)){
+       [this.year, this.month] = args;
+    } 
+
     // Initialize object properties
-    this.generateCal();
+    this.constructor.generateCal.call(this);
 
     const WEEKDAYS = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
     const MONTHS = [
@@ -117,16 +121,12 @@ class Calendar {
   }
 }
 
+
 // Create a wrapper function to easily print calendar
 function showCal(year, month) {
   const calendar = new Calendar();
-
-  if (arguments.length == 2) {
-    calendar.year = year;
-    calendar.month = month;
-  }
-  calendar.printCal();
+  calendar.printCal(year, month);
 }
 
 // Print the calendar with optional args.
-showCal(2013, 8);
+showCal(2013, 2);
